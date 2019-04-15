@@ -15,6 +15,7 @@ resource "aws_cloudwatch_log_subscription_filter" "all_logs" {
   destination_arn = "${aws_lambda_function.papertrail.arn}"
   log_group_name  = "${var.monitor_log_group_names[count.index]}"
   filter_pattern  = "${var.filter_pattern}"
+  distribution    = "ByLogStream"
 }
 
 resource "aws_lambda_function" "papertrail" {
